@@ -1,5 +1,6 @@
 -f https://download.pytorch.org/whl/torch_stable.html
-aiogram==2.9.2
-torch==1.4.0+cpu
-torchvision==0.5.0+cpu
-matplotlib==3.1.1
+aiogram
+aiohttp
+matplotlib
+torch+cpu
+torchvision+cpu
