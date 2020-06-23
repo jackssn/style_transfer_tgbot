@@ -9,7 +9,7 @@ with open('token.txt', 'r') as f:
 
 WEBHOOK_HOST = 'https://refresher-jackssnbot.herokuapp.com'
 WEBAPP_HOST = '0.0.0.0'
-WEBAPP_PORT = os.environ.get('PORT') 
+WEBAPP_PORT = os.environ.get('5555') 
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
