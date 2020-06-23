@@ -7,6 +7,10 @@ from aiogram import Bot, Dispatcher, executor, types
 with open('token.txt', 'r') as f:
     API_TOKEN = f.read()
 
+WEBHOOK_HOST = 'https://refresher-jackssnbot.herokuapp.com'
+WEBAPP_HOST = '0.0.0.0'
+WEBAPP_PORT = os.environ.get('PORT') 
+
 # Configure logging
 logging.basicConfig(level=logging.INFO)
 
