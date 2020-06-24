@@ -28,8 +28,7 @@ dp = Dispatcher(bot)
 
 async def on_startup(dispatcher: 'Dispatcher') -> None:
     logging.warning('Starting...')
-    print(WEBHOOK_URL)
-    bot.set_webhook(WEBHOOK_URL)
+    await bot.set_webhook(WEBHOOK_URL)
 
 async def on_shutdown(dispatcher: 'Dispatcher') -> None:
     logging.warning('Shutting down...')
