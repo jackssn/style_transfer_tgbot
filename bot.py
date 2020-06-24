@@ -18,10 +18,6 @@ WEBHOOK_URL = urljoin(WEBHOOK_HOST, WEBHOOK_PATH)
 WEBAPP_HOST = '0.0.0.0'
 WEBAPP_PORT = os.environ['PORT']
 
-WEBHOOK_HOST = 'https://refresher-jackssnbot.herokuapp.com'
-WEBAPP_HOST = '0.0.0.0'
-WEBAPP_PORT = os.environ.get('5555') 
-
 # Configure logging
 logging.basicConfig(level=logging.INFO)
 
