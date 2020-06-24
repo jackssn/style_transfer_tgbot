@@ -1,11 +1,22 @@
 import os
 import logging
+from urllib.parse import urljoin
+
 import style_transfer
 
 from aiogram import Bot, Dispatcher, executor, types
 
-with open('token.txt', 'r') as f:
-    API_TOKEN = f.read()
+# telegram token
+API_TOKEN = os.environ['API_TOKEN']
+
+# webhook settings
+WEBHOOK_HOST = os.environ['WEBHOOK_HOST']
+WEBHOOK_PATH = f'/webhook/{API_TOKEN}'
+WEBHOOK_URL = urljoin(WEBHOOK_HOST, WEBHOOK_PATH)
+
+#webserver settings
+WEBAPP_HOST = '0.0.0.0'
+WEBAPP_PORT = os.environ['PORT']
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -13,6 +24,14 @@ logging.basicConfig(level=logging.INFO)
 # Initialize bot and dispatcher
 bot = Bot(token=API_TOKEN)
 dp = Dispatcher(bot)
+
+
+async def on_startup(dispatcher: 'Dispatcher') -> None:
+    logging.warning('Starting...')
+
+async def on_shutdown(dispatcher: 'Dispatcher') -> None:
+    logging.warning('Shutting down...')
+    logging.warning('Done.')
 
 @dp.message_handler(commands=['start'])
 async def send_welcome(message: types.Message):
@@ -64,4 +83,15 @@ async def cats(message: types.Message):
         await message.answer_photo(photo)
 
 if __name__ == '__main__':
-    executor.start_polling(dp, skip_updates=True)
+
+    executor.start_webhook(
+        dispatcher=dp,
+        webhook_path=WEBHOOK_PATH,
+        on_startup=on_startup,
+        on_shutdown=on_shutdown,
+        skip_updates=False,
+        host=WEBAPP_HOST,
+        port=WEBAPP_PORT,
+    )
+
+    #executor.start_polling(dp, skip_updates=True)
