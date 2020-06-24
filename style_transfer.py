@@ -236,7 +236,8 @@ def main(imsize=128, num_steps=200, img_style="images/picasso.jpg", img_content=
     cnn_normalization_mean = torch.tensor([0.485, 0.456, 0.406]).to(device)
     cnn_normalization_std = torch.tensor([0.229, 0.224, 0.225]).to(device)
 
-    cnn = models.vgg19(pretrained=True).features.to(device).eval()
+    #cnn = models.vgg19(pretrained=True).features.to(device).eval()
+    cnn = models.mobilenet_v2(pretrained=True).features.to(device).eval()
 
     input_img = content_img.clone()
 
