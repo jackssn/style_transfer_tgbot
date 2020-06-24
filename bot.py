@@ -53,7 +53,7 @@ async def send_welcome(message: types.Message):
 async def upd_dir(message, type_path):
     path = 'data/%s/%s' % (message.from_user.id, type_path)
     if not os.path.exists(path):
-        os.mkdir(path)
+        os.makedirs(path)
 
 @dp.message_handler(regexp='style', content_types=types.ContentType.PHOTO)
 async def accept_style(message: types.Message):
