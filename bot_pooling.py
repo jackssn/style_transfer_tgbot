@@ -27,11 +27,6 @@ async def send_welcome(message: types.Message):
                          "\n\nAfter that I will send you a result of my work." % message.from_user.first_name,
                          parse_mode='HTML')
 
-#@dp.message_handler(regexp='style', content_types=types.ContentType.PHOTO)
-#async def cats(message: types.Message):
-#    with open('cat.jpg', 'rb') as photo:
-#        await message.answer_photo(photo, caption='Cats are here 😺')
-
 async def upd_dir(message, type_path):
     path = 'data/%s/%s' % (message.from_user.id, type_path)
     if not os.path.exists(path):
@@ -56,7 +51,7 @@ async def accept_content(message: types.Message):
         last_style = last_style[-1]
     else:
         await message.answer('You are not upload any style-image, so we use default image (picasso).')
-    last_content = os.listdir('data/%s/content' % message.from_user.id)[-1]
+    last_content = os.listdir('data/%s/content' % message.from_user.id)[0]
     style_transfer.main(imsize=256, num_steps=150,
                            img_style=os.path.join('data/%s/style' % message.from_user.id, last_style),
                            img_content=os.path.join('data/%s/content' % message.from_user.id, last_content))

@@ -227,7 +227,7 @@ def main(imsize=128, num_steps=200, img_style="images/picasso.jpg", img_content=
         transforms.ToTensor()])  # превращаем в удобный формат
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-
+    print('device:', device)
     style_img = image_loader(img_style, loader, device)
     content_img = image_loader(img_content, loader, device)
 
