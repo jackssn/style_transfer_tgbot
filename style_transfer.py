@@ -205,7 +205,7 @@ def run_style_transfer(cnn, normalization_mean, normalization_std,
     return input_img
 
 
-def main(imsize=128, num_steps=200, img_style="images/picasso.jpg", img_content="images/lisa.jpg"):
+def main(imsize, num_steps, img_style, img_content):
     imsize = imsize
 
     img_content_size = Image.open(img_content).size

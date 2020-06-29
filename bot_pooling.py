@@ -38,7 +38,7 @@ async def accept_style(message: types.Message):
     await upd_dir(message, 'style')
     await message.photo[-1].download('data/%s/style/%s.jpg' %
                                      (message.from_user.id, (message.date.strftime('%Y%m%d%H%M%S'))))
-    await message.reply('Style accepted. Now send me a photo with text "content"')
+    await message.reply('Style accepted. Now send me photo with text "content"')
 
 @dp.message_handler(regexp='content', content_types=types.ContentType.PHOTO)
 async def accept_content(message: types.Message):
