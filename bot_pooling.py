@@ -42,11 +42,12 @@ async def accept_style(message: types.Message):
 
 @dp.message_handler(regexp='content', content_types=types.ContentType.PHOTO)
 async def accept_content(message: types.Message):
-    await upd_dir(message, 'content')
-    await upd_dir(message, 'result')
-    await message.photo[-1].download('data/%s/content/%s.jpg' % (message.from_user.id,
-                                                                 (message.date.strftime('%Y%m%d%H%M%S'))))
     if os.path.exists('data/%s/style' % message.from_user.id):
+        await upd_dir(message, 'content')
+        await upd_dir(message, 'result')
+        await message.photo[-1].download('data/%s/content/%s.jpg' % (message.from_user.id,
+                                                                     (message.date.strftime('%Y%m%d%H%M%S'))))
+
         await message.reply('Content accepted. Now wait a result. It takes about 5 minutes.')
         last_style = os.listdir('data/%s/style' % message.from_user.id)[-1]
         last_content = os.listdir('data/%s/content' % message.from_user.id)[-1]
