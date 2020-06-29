@@ -226,8 +226,9 @@ def main(imsize, num_steps, img_style, img_content):
         transforms.CenterCrop(size=(h_new, w_new)),
         transforms.ToTensor()])  # превращаем в удобный формат
 
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    print('device:', device)
+    #device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    device = 'cpu'
+    #print('device:', device)
     style_img = image_loader(img_style, loader, device)
     content_img = image_loader(img_content, loader, device)
 
