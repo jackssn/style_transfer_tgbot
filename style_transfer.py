@@ -249,7 +249,7 @@ def main(imsize=128, num_steps=200, img_style="images/picasso.jpg", img_content=
         transforms.ToTensor(),
     ])
 
-    output_big = scaler(output[0])
+    output_big = scaler(output[0].cpu())
     img_to_save = output_big.cpu().detach().numpy().transpose(1, 2, 0)
     filepath = img_content.replace('content', 'result')
     plt.imsave(filepath, img_to_save)
