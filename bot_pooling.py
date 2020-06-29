@@ -7,7 +7,7 @@ import style_transfer
 from aiogram import Bot, Dispatcher, executor, types
 
 # telegram token
-#API_TOKEN = os.environ['API_TOKEN']
+API_TOKEN = os.environ['API_TOKEN']
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
