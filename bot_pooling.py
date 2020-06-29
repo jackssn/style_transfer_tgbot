@@ -51,7 +51,7 @@ async def accept_content(message: types.Message):
         await message.reply('Content accepted. Now wait a result. It takes about 5 minutes.')
         last_style = os.listdir('data/%s/style' % message.from_user.id)[-1]
         last_content = os.listdir('data/%s/content' % message.from_user.id)[-1]
-        style_transfer.main(imsize=256, num_steps=150,
+        style_transfer.main(imsize=128, num_steps=150,
                                   img_style=os.path.join('data/%s/style' % message.from_user.id, last_style),
                                   img_content=os.path.join('data/%s/content' % message.from_user.id, last_content))
         with open(os.path.join('data/%s/result' % message.from_user.id,
