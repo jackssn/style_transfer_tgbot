@@ -3,4 +3,4 @@ aiogram
 aiohttp
 matplotlib
 torch==1.5.0+cpu
-torchvision==0.5.0+cpu
+torchvision==0.6.0+cpu
