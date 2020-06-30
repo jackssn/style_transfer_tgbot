@@ -256,4 +256,5 @@ def main(imsize, num_steps, img_style, img_content):
 
     filepath = img_content.replace('content', 'result')
     plt.imsave(filepath, img_to_save)
+    return True
 
