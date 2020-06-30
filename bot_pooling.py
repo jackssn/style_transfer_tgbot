@@ -9,7 +9,6 @@ from aiogram import Bot, Dispatcher, executor, types
 # telegram token
 API_TOKEN = os.environ['API_TOKEN']
 
-
 # Configure logging
 logging.basicConfig(level=logging.INFO)
 
@@ -17,12 +16,12 @@ logging.basicConfig(level=logging.INFO)
 bot = Bot(token=API_TOKEN)
 dp = Dispatcher(bot)
 
-@dp.message_handler(commands=['start'])
+@dp.message_handler(commands=['start', 'help'])
 async def send_welcome(message: types.Message):
     """
-    This handler will be called when user sends `/start` command
+    This handler will be called when user sends `/start` and '/help' commands
     """
-    await message.answer("Hello, <b>%s</b>!\n\nI'm RefresherBot by @jackssn!\n"
+    await message.answer("Hello, <b>%s</b>!\n\nI'm RefresherBot!\n"
                          "If you want to transfer style from one photo to another send me photo "
                          "with text \"style\" and than another photo with text \"content\". "
                          "\n\nAfter that I will send you a result of my work." % message.from_user.first_name,
@@ -48,15 +47,19 @@ async def accept_content(message: types.Message):
         await message.photo[-1].download('data/%s/content/%s.jpg' % (message.from_user.id,
                                                                      (message.date.strftime('%Y%m%d%H%M%S'))))
 
-        await message.reply('Content accepted. Now wait a result. It takes about 5 minutes.')
-        last_style = os.listdir('data/%s/style' % message.from_user.id)[-1]
-        last_content = os.listdir('data/%s/content' % message.from_user.id)[-1]
-        style_transfer.main(imsize=256, num_steps=150,
-                                  img_style=os.path.join('data/%s/style' % message.from_user.id, last_style),
-                                  img_content=os.path.join('data/%s/content' % message.from_user.id, last_content))
-        with open(os.path.join('data/%s/result' % message.from_user.id,
-                               os.listdir('data/%s/content' % message.from_user.id)[-1]), 'rb') as photo:
-            await message.answer_photo(photo)
+        await message.reply('Content accepted. Now wait a result. It takes about 5-10 minutes.')
+
+        get_pic = style_transfer.main(imsize=400, num_steps=100,
+                                  img_style=os.path.join('data/%s/style' % message.from_user.id,
+                                                         os.listdir('data/%s/style' % message.from_user.id)[-1]),
+                                  img_content=os.path.join('data/%s/content' % message.from_user.id,
+                                                           os.listdir('data/%s/content' % message.from_user.id)[-1]))
+        if get_pic is True:
+            with open(os.path.join('data/%s/result' % message.from_user.id,
+                                   os.listdir('data/%s/content' % message.from_user.id)[-1]), 'rb') as photo:
+                await message.answer_photo(photo)
+        else:
+            await message.answer('Something was wrong.')
     else:
         await message.answer('You are not upload any style-image. Send me photo with text "style".')
 
