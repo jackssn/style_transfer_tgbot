@@ -15,7 +15,9 @@ and **content**, and bot send you a content-image with style from style-image.
 1. Buy VPS, for example, [here](https://firstvds.ru/). You need server with KVM virtualization, other types has old kernel version for Docker. Price about 3$/month
 2. Install Docker - [instruction (ru)](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-debian-9-ru)
 3. You need add swap-space to bot right working (I added 4 GB). [Instruction (en)](https://www.digitalocean.com/community/tutorials/how-to-add-swap-space-on-debian-9)
-3. Create Dockerfile like [this]() but you need insert your Telegram bot API_TOKEN
+3. Create Dockerfile like
+ [this](https://github.com/jackssn/style_transfer_tgbot/blob/master/Dockerfile) 
+. And dont't forget insert your Telegram bot API_TOKEN
 4. Deploy bot via Docker with command: `docker build -t <CONTEINER_NAME> ./`
 5. Start bot in Docker with command: `docker run -t -d <CONTEINER_NAME>`
 
