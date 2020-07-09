@@ -20,8 +20,8 @@ have too old kernel version for Docker. Price about 3$/month
 3. Create Dockerfile like
  [this](https://github.com/jackssn/style_transfer_tgbot/blob/master/Dockerfile) 
 . And dont't forget insert your Telegram bot API_TOKEN
-4. Deploy bot via Docker with command: `docker build -t <CONTEINER_NAME> ./`
-5. Start bot in Docker with command: `docker run -t -d <CONTEINER_NAME>`
+4. Deploy bot via Docker with command: `docker build -t <CONTAINER_NAME> ./`
+5. Start bot in Docker with command: `docker run -t -d <CONTAINER_NAME>`
 
 ## Example
 
